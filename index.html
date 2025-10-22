@@ -1,68 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Michelin Stars in DC | Erin Weiss</title>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #b3e5fc, #d1c4e9);
-            color: #222;
-            margin: 0;
-            padding: 2rem;
-            text-align: center;
-        }
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        iframe {
-            border: none;
-            width: 90%;
-            height: 850px;
-            border-radius: 1rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-        p {
-            font-size: 1rem;
-            max-width: 800px;
-            margin: 1rem auto;
-        }
-    </style>
-</head>
-<body>
-    <h1>Michelin Stars in Washington, D.C.</h1>
-    <p>
-        Explore the interactive Tableau dashboard below to discover insights into Michelin-starred restaurants across Washington, D.C.
-    </p>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Michelin Stars in Washington, D.C.</title>
 
-  <!-- Tableau Embed -->
-  <div class='tableauPlaceholder' id='viz1761094054831' style='position: relative'>
-    <noscript>
-      <a href='#'>
-        <img alt='Michelin Stars in DC Zoom In'
-             src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fo&#47;Food-DC-Final&#47;MichelinStarsinDCZoomIn&#47;1_rss.png'
-             style='border: none' />
-      </a>
-    </noscript>
-    <object class='tableauViz' style='display:none;'>
-      <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-      <param name='embed_code_version' value='3' />
-      <param name='site_root' value='' />
-      <param name='name' value='Food-DC-Final&#47;MichelinStarsinDCZoomIn' />
-      <param name='tabs' value='no' />
-      <param name='toolbar' value='yes' />
-      <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fo&#47;Food-DC-Final&#47;MichelinStarsinDCZoomIn&#47;1.png' />
-      <param name='animate_transition' value='yes' />
-      <param name='display_static_image' value='yes' />
-      <param name='display_spinner' value='yes' />
-      <param name='display_overlay' value='yes' />
-      <param name='display_count' value='yes' />
-      <param name='language' value='en-US' />
-    </object>
+  <style>
+    /* ---- Page Background ---- */
+    body {
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #a2d2ff, #cdb4db, #bde0fe);
+      margin: 0;
+      padding: 0;
+      color: #111;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    /* ---- Header ---- */
+    header {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      padding: 3rem 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0 0 1rem;
+    }
+
+    header p.subtitle {
+      font-size: 1.2rem;
+      color: #333;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ---- Tableau Viz Container ---- */
+    .viz-wrapper {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      padding: 3rem 0;
+    }
+
+    .tableauPlaceholder {
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tableauPlaceholder:hover {
+      transform: scale(1.01);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .tableauPlaceholder object,
+    .tableauPlaceholder iframe,
+    .tableauPlaceholder embed {
+      display: inline-block;
+      width: 100% !important;
+      height: auto !important;
+      min-height: 850px;
+      box-sizing: border-box;
+    }
+
+    /* ---- Footer Button ---- */
+    .footer {
+      margin-top: 2rem;
+      padding-bottom: 4rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      color: white;
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    /* ---- Floating Credit Tag ---- */
+    .credit-tag {
+      position: fixed;
+      right: 20px;
+      bottom: 15px;
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+      color: #222;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .credit-tag a {
+      text-decoration: none;
+      color: #2575fc;
+      font-weight: 600;
+    }
+
+    .credit-tag:hover {
+      opacity: 0.8;
+      transform: translateY(-2px);
+    }
+
+    /* ---- Responsive Adjustments ---- */
+    @media (max-width: 1000px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .tableauPlaceholder {
+        max-width: 95vw;
+      }
+
+      .tableauPlaceholder object,
+      .tableauPlaceholder iframe {
+        min-height: 950px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Michelin Stars in Washington, D.C.</h1>
+    <p class="subtitle">
+      Explore this interactive Tableau dashboard to discover insights into Michelin-starred restaurants across Washington, D.C.
+    </p>
+  </header>
+
+  <div class="viz-wrapper">
+    <div class="tableauPlaceholder" id="viz1761094054831" style="position: relative">
+      <noscript>
+        <a href="#">
+          <img alt="Michelin Stars in DC Zoom In"
+            src="https://public.tableau.com/static/images/Fo/Food-DC-Final/MichelinStarsinDCZoomIn/1_rss.png"
+            style="border: none" />
+        </a>
+      </noscript>
+
+      <object class="tableauViz" style="display:none;">
+        <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+        <param name="embed_code_version" value="3" />
+        <param name="site_root" value="" />
+        <param name="name" value="Food-DC-Final/MichelinStarsinDCZoomIn" />
+        <param name="tabs" value="no" />
+        <param name="toolbar" value="yes" />
+        <param name="static_image"
+          value="https://public.tableau.com/static/images/Fo/Food-DC-Final/MichelinStarsinDCZoomIn/1.png" />
+        <param name="animate_transition" value="yes" />
+        <param name="display_static_image" value="yes" />
+        <param name="display_spinner" value="yes" />
+        <param name="display_overlay" value="yes" />
+        <param name="display_count" value="yes" />
+        <param name="language" value="en-US" />
+      </object>
+    </div>
   </div>
-  <script type='text/javascript'>
+
+  <div class="footer">
+    <a class="btn" href="https://public.tableau.com/views/Food-DC-Final/MichelinStarsinDCZoomIn" target="_blank">
+      🔗 View on Tableau Public
+    </a>
+  </div>
+
+  <div class="credit-tag">
+    Built by <strong>Erin Weiss</strong> · <a href="https://public.tableau.com/profile/erin-weiss" target="_blank">Tableau + HTML Portfolio Project</a>
+  </div>
+
+  <script type="text/javascript">
     var divElement = document.getElementById('viz1761094054831');
     var vizElement = divElement.getElementsByTagName('object')[0];
     if (divElement.offsetWidth > 800) {
@@ -83,10 +216,5 @@
     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
     vizElement.parentNode.insertBefore(scriptElement, vizElement);
   </script>
-
-    <p>
-        View full project on 
-        <a href="https://github.com/Erin-Weiss/tableau-DC-food-dashboard" target="_blank">GitHub</a>.
-    </p>
 </body>
 </html>
