@@ -2,212 +2,121 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Michelin Stars in Washington, D.C.</title>
-
   <style>
     /* ---- Page Background ---- */
-    body {
-      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
-      background: linear-gradient(135deg, #a2d2ff, #cdb4db, #bde0fe);
-      margin: 0;
-      padding: 0;
-      color: #111;
-      text-align: center;
-      overflow-x: hidden;
+    body{
+      font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+      background:linear-gradient(135deg,#a2d2ff,#cdb4db,#bde0fe);
+      margin:0; color:#111; text-align:center; overflow-x:hidden;
     }
 
     /* ---- Header ---- */
-    header {
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(12px);
-      padding: 3rem 1rem 2rem;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-      animation: fadeIn 1.5s ease forwards;
+    header{
+      background:rgba(255,255,255,0.2);
+      backdrop-filter:blur(12px);
+      padding:3rem 1rem 2rem;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+      border-bottom:1px solid rgba(255,255,255,0.3);
+      animation:fadeIn 1.5s ease forwards;
+    }
+    header h1{
+      font-size:3rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+      background:linear-gradient(90deg,#6a11cb,#2575fc);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      margin:0 0 1rem; opacity:0; animation:slideDown 1.3s ease forwards;
+    }
+    header p.subtitle{
+      font-size:1.2rem;color:#333;max-width:700px;margin:0 auto;opacity:0;
+      animation:fadeIn 2.2s ease forwards;animation-delay:.5s;
     }
 
-    header h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, #6a11cb, #2575fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin: 0 0 1rem;
-      opacity: 0;
-      animation: slideDown 1.3s ease forwards;
+    /* ---- Viz area ---- */
+    .viz-wrapper{
+      display:flex; justify-content:center; padding:3rem 1rem;
     }
 
-    header p.subtitle {
-      font-size: 1.2rem;
-      color: #333;
-      max-width: 700px;
-      margin: 0 auto;
-      opacity: 0;
-      animation: fadeIn 2.2s ease forwards;
-      animation-delay: 0.5s;
+    /* Outer card holds the shadow (no clipping here) */
+    .viz-card{
+      width:100%; max-width:1600px; margin:0 auto;
+      border-radius:22px;
+      box-shadow:0 18px 48px rgba(0,0,0,.16);
+      transition:box-shadow .3s ease, transform .25s ease;
+      background:transparent; /* shadow only; inner holds the background */
+    }
+    .viz-card:hover{
+      box-shadow:0 26px 66px rgba(0,0,0,.22);
+      transform:translateY(-2px);
     }
 
-    /* ---- Tableau Viz Container ---- */
-    .viz-wrapper {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      padding: 3rem 0;
+    /* Inner container actually clips the viz with rounded corners */
+    .viz-inner{
+      border-radius:18px; overflow:hidden;
+      background:linear-gradient(135deg,#e0eafc,#cfdef3);
     }
 
-    .tableauPlaceholder {
-      width: 100%;
-      max-width: 1600px;
-      margin: 0 auto;
-      background: linear-gradient(135deg, #e0eafc, #cfdef3);
-      border-radius: 18px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: fadeIn 1.5s ease forwards;
-      animation-delay: 1.2s;
-      opacity: 0;
-    }
-
-    .tableauPlaceholder:hover {
-      transform: scale(1.01);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-    }
-
-    .tableauPlaceholder object,
-    .tableauPlaceholder iframe,
-    .tableauPlaceholder embed {
-      display: inline-block;
-      width: 100% !important;
-      height: auto !important;
-      min-height: 850px;
-      box-sizing: border-box;
+    /* Use an iframe embed for rock-solid sizing on GH Pages */
+    .viz-iframe{
+      display:block; width:100%;
+      /* Height strategy: viewport-based with safe clamps to avoid cropping */
+      height:clamp(850px, 85vh, 1300px);
+      border:0;
     }
 
     /* ---- Footer Button ---- */
-    .footer {
-      margin-top: 2rem;
-      padding-bottom: 4rem;
-      animation: fadeIn 2s ease forwards;
-      animation-delay: 1.8s;
-      opacity: 0;
+    .footer{ margin-top:2rem; padding-bottom:4rem; animation:fadeIn 2s ease forwards; animation-delay:1.8s; opacity:0; }
+    .btn{
+      display:inline-block; background:linear-gradient(90deg,#6a11cb,#2575fc);
+      color:#fff; text-decoration:none; padding:.9rem 2rem; border-radius:50px;
+      font-weight:600; font-size:1rem; transition:all .3s ease;
+      box-shadow:0 5px 15px rgba(0,0,0,.2);
     }
+    .btn:hover{ transform:translateY(-4px); box-shadow:0 8px 25px rgba(0,0,0,.25); }
 
-    .btn {
-      display: inline-block;
-      background: linear-gradient(90deg, #6a11cb, #2575fc);
-      color: white;
-      text-decoration: none;
-      padding: 0.9rem 2rem;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    /* ---- Floating Credit ---- */
+    .credit-tag{
+      position:fixed; right:20px; bottom:15px; background:rgba(255,255,255,.35);
+      backdrop-filter:blur(6px); border-radius:12px; padding:.6rem 1rem;
+      font-size:.9rem; color:#222; font-weight:500; box-shadow:0 2px 8px rgba(0,0,0,.15);
+      transition:opacity .3s ease, transform .3s ease; animation:fadeIn 2.5s ease forwards;
+      animation-delay:2.3s; opacity:0;
     }
-
-    .btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-    }
-
-    /* ---- Floating Credit Tag ---- */
-    .credit-tag {
-      position: fixed;
-      right: 20px;
-      bottom: 15px;
-      background: rgba(255, 255, 255, 0.35);
-      backdrop-filter: blur(6px);
-      border-radius: 12px;
-      padding: 0.6rem 1rem;
-      font-size: 0.9rem;
-      color: #222;
-      font-weight: 500;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      animation: fadeIn 2.5s ease forwards;
-      animation-delay: 2.3s;
-      opacity: 0;
-    }
-
-    .credit-tag a {
-      text-decoration: none;
-      color: #2575fc;
-      font-weight: 600;
-    }
-
-    .credit-tag:hover {
-      opacity: 0.8;
-      transform: translateY(-2px);
-    }
+    .credit-tag a{ text-decoration:none; color:#2575fc; font-weight:600; }
+    .credit-tag:hover{ opacity:.85; transform:translateY(-2px); }
 
     /* ---- Animations ---- */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes slideDown{0%{opacity:0;transform:translateY(-30px)}100%{opacity:1;transform:translateY(0)}}
 
-    @keyframes slideDown {
-      0% { opacity: 0; transform: translateY(-30px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ---- Responsive ---- */
-    @media (max-width: 1000px) {
-      header h1 {
-        font-size: 2.2rem;
-      }
-
-      .tableauPlaceholder {
-        max-width: 95vw;
-      }
-
-      .tableauPlaceholder object,
-      .tableauPlaceholder iframe {
-        min-height: 950px;
-      }
+    /* ---- Responsive tweaks ---- */
+    @media (max-width:1000px){
+      header h1{ font-size:2.2rem }
+      .viz-card{ max-width:95vw }
+      /* Give smaller screens a bit more height automatically */
+      .viz-iframe{ height:clamp(950px, 95vh, 1400px) }
     }
   </style>
 </head>
-
 <body>
   <header>
     <h1>Michelin Stars in Washington, D.C.</h1>
-    <p class="subtitle">
-      Explore this interactive Tableau dashboard to discover insights into Michelin-starred restaurants across Washington, D.C.
-    </p>
+    <p class="subtitle">Explore this interactive Tableau dashboard to discover insights into Michelin-starred restaurants across Washington, D.C.</p>
   </header>
 
   <div class="viz-wrapper">
-    <div class="tableauPlaceholder" id="viz1761094054831" style="position: relative">
-      <noscript>
-        <a href="#">
-          <img alt="Michelin Stars in DC Zoom In"
-            src="https://public.tableau.com/static/images/Fo/Food-DC-Final/MichelinStarsinDCZoomIn/1_rss.png"
-            style="border: none" />
-        </a>
-      </noscript>
-
-      <object class="tableauViz" style="display:none;">
-        <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
-        <param name="embed_code_version" value="3" />
-        <param name="site_root" value="" />
-        <param name="name" value="Food-DC-Final/MichelinStarsinDCZoomIn" />
-        <param name="tabs" value="no" />
-        <param name="toolbar" value="yes" />
-        <param name="static_image"
-          value="https://public.tableau.com/static/images/Fo/Food-DC-Final/MichelinStarsinDCZoomIn/1.png" />
-        <param name="animate_transition" value="yes" />
-        <param name="display_static_image" value="yes" />
-        <param name="display_spinner" value="yes" />
-        <param name="display_overlay" value="yes" />
-        <param name="display_count" value="yes" />
-        <param name="language" value="en-US" />
-      </object>
+    <div class="viz-card">
+      <div class="viz-inner">
+        <!--
+          Use the Tableau Public iframe embed (more stable than <object> on GH Pages).
+          If your sheet path changes, update the "views/..." segment below.
+        -->
+        <iframe
+          class="viz-iframe"
+          src="https://public.tableau.com/views/Food-DC-Final/MichelinStarsinDCZoomIn?:showVizHome=no&:embed=true&:toolbar=yes"
+          allowfullscreen
+        ></iframe>
+      </div>
     </div>
   </div>
 
@@ -218,30 +127,8 @@
   </div>
 
   <div class="credit-tag">
-    Built by <strong>Erin Weiss</strong> · 
+    Built by <strong>Erin Weiss</strong> ·
     <a href="https://github.com/Erin-Weiss" target="_blank">Tableau + HTML Portfolio Project</a>
   </div>
-
-  <script type="text/javascript">
-    var divElement = document.getElementById('viz1761094054831');
-    var vizElement = divElement.getElementsByTagName('object')[0];
-    if (divElement.offsetWidth > 800) {
-      vizElement.style.minWidth = '1040px';
-      vizElement.style.maxWidth = '100%';
-      vizElement.style.minHeight = '812px';
-      vizElement.style.maxHeight = (divElement.offsetWidth * 0.75) + 'px';
-    } else if (divElement.offsetWidth > 500) {
-      vizElement.style.minWidth = '1040px';
-      vizElement.style.maxWidth = '100%';
-      vizElement.style.minHeight = '812px';
-      vizElement.style.maxHeight = (divElement.offsetWidth * 0.75) + 'px';
-    } else {
-      vizElement.style.width = '100%';
-      vizElement.style.height = '1257px';
-    }
-    var scriptElement = document.createElement('script');
-    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-    vizElement.parentNode.insertBefore(scriptElement, vizElement);
-  </script>
 </body>
 </html>
