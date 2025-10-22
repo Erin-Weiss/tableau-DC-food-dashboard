@@ -6,15 +6,13 @@
 
 ![Dashboard Preview](dashboard-preview.png)
 
-[👉 **Click here to view the full interactive dashboard on Tableau Public**](https://public.tableau.com/views/Food-DC-Final/MichelinStarsinDCZoomIn?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+[👉 **Click here to view the full interactive dashboard on GitHub Pages**](https://erin-weiss.github.io/tableau-DC-food-dashboard/)
 
 ---
 
 ## 📊 Project Overview
 
 This Tableau dashboard provides an in-depth analysis of Michelin-starred restaurants in Washington, D.C., placing the city’s fine dining scene within a global and national context. The dashboard integrates **geographic, categorical, and numeric data** to explore how D.C. compares to other culinary hubs such as New York and Chicago, and to visualize restaurant distribution, cuisine trends, and Michelin star classifications.
-
-**[View Live Dashboard on GitHub Pages →](https://erin-weiss.github.io/tableau-DC-food-dashboard/)**  
 
 ---
 
@@ -101,7 +99,7 @@ The dashboard’s visualizations provide a comprehensive narrative:
 
 ## 🔗 Links
 
-- **Live Dashboard**: [View on Tableau Public](https://public.tableau.com/views/Food-DC-Final/MichelinStarsinDCZoomIn?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)  
+- **Live Dashboard**: [View on Tableau Public](https://public.tableau.com/views/Food-DC-Final/MichelinStarsinDCZoomIn?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) or [GitHub Pages](https://erin-weiss.github.io/tableau-DC-food-dashboard/)
 - **Code & Assets**: [GitHub Repository](https://github.com/Erin-Weiss/tableau-DC-food-dashboard) 
 - **Portfolio Page**: [View Project on Portfolio](https://erin-weiss.github.io/articles/Tableau-1.html)
 
