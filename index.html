@@ -37,7 +37,7 @@
       display:flex; justify-content:center; padding:3rem 1rem;
     }
 
-    /* Outer card holds the shadow (no clipping here) */
+    /* Outer card holds the shadow */
     .viz-card{
       width:100%; max-width:1600px; margin:0 auto;
       border-radius:22px;
@@ -50,13 +50,13 @@
       transform:translateY(-2px);
     }
 
-    /* Inner container actually clips the viz with rounded corners */
+    /* Inner container */
     .viz-inner{
       border-radius:18px; overflow:hidden;
       background:linear-gradient(135deg,#e0eafc,#cfdef3);
     }
 
-    /* Use an iframe embed for rock-solid sizing on GH Pages */
+    /* Use an iframe embed */
     .viz-iframe{
       display:block; width:100%;
       /* Height strategy: viewport-based with safe clamps to avoid cropping */
@@ -107,10 +107,6 @@
   <div class="viz-wrapper">
     <div class="viz-card">
       <div class="viz-inner">
-        <!--
-          Use the Tableau Public iframe embed (more stable than <object> on GH Pages).
-          If your sheet path changes, update the "views/..." segment below.
-        -->
         <iframe
           class="viz-iframe"
           src="https://public.tableau.com/views/Food-DC-Final/MichelinStarsinDCZoomIn?:showVizHome=no&:embed=true&:toolbar=yes"
