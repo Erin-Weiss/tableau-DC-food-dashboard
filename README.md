@@ -11,7 +11,7 @@
 
 ## Objective
 
-Design and build a visually polished, fully interactive Tableau dashboard that analyzes the distribution and characteristics of Michelin-starred restaurants in Washington, D.C. The project integrates geographic, categorical, and numeric data into a single cohesive view — combining custom Figma-designed UI elements, geospatial mapping with layered encodings, dynamic filtering, and comparative benchmarking across cities and countries. The techniques demonstrated here — interactive geospatial visualization, multi-level drill-down, and custom UI/UX design — are directly transferable to dashboards in any business domain.
+Design and build a visually polished, fully interactive Tableau dashboard that analyzes the distribution and characteristics of Michelin-starred restaurants in Washington, D.C. The project integrates geographic, categorical, and numeric data into a single cohesive view, combining custom Figma-designed UI elements, geospatial mapping with layered encodings, dynamic filtering, and comparative benchmarking across cities and countries. The techniques demonstrated here (interactive geospatial visualization, multi-level drill-down, and custom UI/UX design) are directly transferable to dashboards in any business domain.
 
 ---
 
@@ -49,7 +49,7 @@ Design and build a visually polished, fully interactive Tableau dashboard that a
 
 **Key findings:**
 
-- D.C. has 54 Michelin-recognized establishments as of 2023, ranking third among U.S. cities behind New York and Chicago — a notable figure given the city's relatively recent inclusion in the Michelin Guide.
+- D.C. has 54 Michelin-recognized establishments as of 2023, ranking third among U.S. cities behind New York and Chicago, a notable figure given the city's relatively recent inclusion in the Michelin Guide.
 - Contemporary and Japanese/Sushi cuisines are the most represented categories among D.C.'s Michelin-starred restaurants, a pattern that also holds across New York and Chicago.
 - The majority of Michelin-starred restaurants are concentrated in central D.C., with only a few extending into Arlington and one located in the suburbs, as revealed by the zoomed-out DMV view.
 - Globally, France, Japan, and Italy lead in Michelin restaurant counts by a wide margin, reflecting the guide's historical European and Japanese roots. The U.S. ranks fourth.
